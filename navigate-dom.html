@@ -1,0 +1,47 @@
+<html>
+    <body>
+        <div id="container" name="the-big-bossman">
+            <div name="child-1">
+                <div id="adopted-child"></div>
+            </div>
+            <div class="sexy-child">I'm the first!</div>
+            <div class="sexy-child">I suck!</div>
+            <div id="bastard-stepchild">
+                <div id="grandchild-1"></div>
+                <div id="grandchild-2"></div>
+                <div id="grandchild-3"></div>
+                <div id="grandchild-4"></div>
+                <div id="grandchild-5"></div>
+            </div>
+        </div>
+        <script>
+            // 1. Get the container and navigate to grandchild-5.
+            var container = document.querySelector('#container');
+
+            var grandchild5 = container.children[3].children[4];
+
+            console.log(grandchild5);
+
+            // 2. Get grandchild-3 and navigate to container
+
+            var grandchild3 = document.getElementById('grandchild-3');
+            var container = grandchild3.parentNode.parentNode;
+
+            console.log(container);
+
+            // 3. Get grandchild-1 and navigate to grandchid-5
+
+            var grandchild1 = document.querySelector('#grandchild-1');
+
+            grandchild5 = grandchild1.parentNode.children[4];
+
+            console.log(grandchild5);
+
+            // 4. Get first sexy-child and navigate to adopted-child
+            var firstSexyChild = document.querySelector('.sexy-child');
+            var adoptedChild = firstSexyChild.parentNode.children[0].children[0];
+
+            console.log(adoptedChild);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<html>
+    <body>
+        <div id="container" name="the-big-bossman">
+            <div name="child-1"></div>
+            <div class="sexy-child">I'm the first!</div>
+            <div class="sexy-child">I suck!</div>
+            <div id="bastard-stepchild"></div>
+        </div>
+    </body>
+    <script>
+        var container = document.getElementById('container');
+        
+        console.dir(container);
+
+        var childOne = document.getElementsByName('child-1')[0];
+        var parent = childOne.parentNode;
+
+        console.log(childOne);
+        console.log(parent);
+
+        var firstSexyChild = document.getElementsByClassName('sexy-child')[0];
+
+        console.log(firstSexyChild);
+
+        var allSexyChildren = document.getElementsByClassName('sexy-child');
+
+        console.log(allSexyChildren);
+
+        var bastard = document.querySelector('#bastard-stepchild');
+
+        console.log(bastard);
+
+        firstSexyChild = document.querySelector('.sexy-child');
+
+        console.log(firstSexyChild);
+
+        allSexyChildren = document.querySelectorAll('.sexy-child');
+
+        console.log(allSexyChildren);
+        
+        firstSexyChild = document.querySelectorAll('.sexy-child')[0];
+
+        console.log(firstSexyChild);
+
+    </script>
+</html>

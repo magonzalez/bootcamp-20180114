@@ -1,0 +1,87 @@
+<html>
+    <body>
+        <div id="container" name="the-big-bossman">
+            <div id="child-container"></div>
+            <div id="other-child">
+                <div id="grandchild"></div>
+            </div>
+        </div>
+        <script>
+            // 1. Create a div in child-container with an id of 'dynamic-div' and a class of 'grandchild'.
+
+            var childContainer = document.getElementById('child-container');
+            var dynamicDiv = document.createElement('div');
+            dynamicDiv.setAttribute('id', 'dynamic-div');
+            dynamicDiv.setAttribute('class', 'grandchild');
+            childContainer.appendChild(dynamicDiv);
+
+            console.log(childContainer);
+
+            // 2. Create the following html structure in grandchild.
+            // <div class="box">
+            //      <div class="header">I'M THE HEADER</div>
+            //      This is some cool text!
+            // </div>
+
+            var grandchild = document.querySelector('#grandchild');
+
+            var box = document.createElement('div');
+            box.setAttribute('class', 'box');
+
+            var header = document.createElement('div');
+            header.setAttribute('class', 'header');
+            var headerText = document.createTextNode("I'M THE HEADER");
+            header.appendChild(headerText);
+            box.appendChild(header);
+
+            var randomText = document.createTextNode('This  is some cool text!');
+            box.appendChild(randomText);
+
+            grandchild.appendChild(box);
+
+            // 3. Create an textbox with a label 'Name' and button 'Submit' in container
+
+            /*
+            var container = document.querySelector('#container');
+
+            var label = document.createTextNode('Name : ');
+            container.appendChild(label);
+
+            var textBox = document.createElement('input');
+            textBox.setAttribute('type', 'text');
+            container.appendChild(textBox);
+
+            // <input type="button">Submit</input>"
+
+            var button = document.createElement('input');
+            button.setAttribute('type', 'button');
+            button.value = "Submit";
+            container.appendChild(button);
+            */
+
+            // 3. Create an textbox with a label 'Name' and button 'Submit' as the first item in container
+            
+            var container = document.querySelector('#container');
+            var inputContainer = document.createElement('div');
+
+            var label = document.createTextNode('Name : ');
+            inputContainer.appendChild(label);
+
+            var textBox = document.createElement('input');
+            textBox.setAttribute('type', 'text');
+            inputContainer.appendChild(textBox);
+
+            // <input type="button">Submit</input>"
+
+            var button = document.createElement('input');
+            button.setAttribute('type', 'button');
+            button.value = "Submit";
+            inputContainer.appendChild(button);
+
+            var firstElement = container.children[0];
+
+            container.insertBefore(inputContainer, firstElement);
+
+        </script>
+    </body>
+</html>

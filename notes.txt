@@ -1,0 +1,148 @@
+Sunday - 2018-01-14
+
+Array Manipulation:
+
+where array colors is an array of colors, color is a single color from the array and count is the the number of items in the array of colors.
+
+var colors = [‘red’, ‘white’, ‘blue’];
+
+var color = colors.shift(); // color = ‘red’
+
+The shift() function remove the item at index 0 from the given array and returns it to the caller. Typically, you want to save that item to a variable so you can use it later.
+
+var colors = [‘red’, ‘white’, ‘blue’];
+var color = ‘yellow’;
+var count = colors.unshift(color); // colors = [‘yellow’, ‘red’, ‘white’, ‘blue’]
+
+The unshift() function adds a new item at the beginning (index 0) of an existing array and pushes all other items over by 1 index. It also returns the new length of the array.
+
+var colors = [‘red’, ‘white’, ‘blue’];
+var arrayOfColorsDeleted = colors.splice(indexToStartAt, numberOfItemsToRemove, colorToAdd1, colorToAdd2, …);
+
+var removed = colors.splice(1, 1); // removed = [‘white’]
+var removed = colors.splice(1, 2); // removed = [‘white’, ‘blue’]
+var removed = colors.splice(0, 1, ‘yellow’); // removed = [‘red’]; colors = [‘yellow’, ‘white’, ‘blue’]
+var removed = colors.splice(0,0,’yellow’); // removed = []; colors= [‘yellow’, ‘red’, ‘white’, ‘blue’]
+
+var removed = colors.splice(2, 1)[0]; // removed = ‘blue’
+
+var removed = colors.splice(2, 1); // removed = [‘blue’]
+var blue = removed[0];
+
+The splice() function is used to remove and/or add any number of items from/to an existing array. It returns the array of items that were removed.
+
+pop()
+
+var colors = [‘red’, ‘white’, ‘blue’];
+
+var color = colors.pop() // color = ‘blue’; colors = [‘red’, white’]
+
+The pop() function removes the last item of the given array and returns it to the caller. 
+
+push()
+
+var colors = [‘red’, ‘white’, ‘blue’];
+
+var count = colors.push(‘yellow’); // count = 4; colors =[‘red’, ‘white’, ‘blue’, ‘yellow’] 
+
+The push() functions adds the given item to the end of an existing array and returns the number of items in the array.
+
+indexOf()
+
+var colors = [‘red’, ‘white’, ‘blue’];
+
+var index = colors.indexOf(‘white’); // index = 1
+var index = colors.indexOf(‘cyan’); // index = -1
+
+The indexOf() function returns the index of the given item in the array. If the item is not in the array it returns -1.
+
+DHTML:
+
+How to find elements in the DOM:
+
+<div id=“swimlane-id” name=“swimlane-name” class=“swimlane-class”></div>
+
+var element = document.getElementById(‘swimlane-id’);
+var elements = document.getElementsByName(‘swimlane-name’);
+var elements = document.getElementsByClassName(‘swimlane-class’);
+
+var element = document.querySelector(‘#swimlane-id’);
+var element = document.querySelector(‘div[name=“swimlane-name”]’); // Don’t let this confuse you.
+var element = document.querySelector(‘.swimlane-class’);
+
+var elements = document.querySelectorAll(‘#swimlane-id’);
+var elements = document.querySelectorAll(‘div[name=“swimlane-name”]’); // Don’t let this confuse you.
+var elements = document.querySelectorAll(‘.swimlane-class’);
+
+How do we navigate the DOM from a given element:
+
+<div id=“swimlane-id” name=“swimlane-name” class=“swimlane-class”></div>
+
+var element = document.getElementById(‘swimlane-id’);
+
+Up: element.parentNode —> returns the immediate parent of the given element. That is, the “container” of the element. This value is null if the element has not been added to the page or the element has been removed from the page.
+
+Down: element.children  —> collection of child elements contained within the given element.
+
+		element.children[0] // first element in the array.
+		element.children.length // the number of elements in the array.
+		element.children.shift() // ERROR!!!
+		element.children.unshift() // ERROR!!!
+		element.children.splice() // ERROR!!!
+		element.children.pop() // ERROR!!!
+		element.children.push() // ERROR!!!
+		element.children.indexOf() // ERROR!!!
+
+How manage child elements for a given element:
+
+<div id=“swimlane-id” name=“swimlane-name” class=“swimlane-class”></div>
+
+var element = document.getElementById(‘swimlane-id’);
+
+element.appendChild(childElement);
+
+The appendChild() function will add an element to the end of the collection of children in a container element.
+
+element.removeChild(childElement);
+
+The removeChild() function will remove an element from the collection of children in a container if the element was in the collection.
+
+How do dynamically (programmatically) create new element.
+
+<div id=“swimlane-id” name=“swimlane-name” class=“swimlane-class”></div>
+
+var swinlane = document.getElementById(‘swimlane-id’);
+
+var card = document.createElement(‘div’);
+card.setAttribute(‘id’, ‘my-new-card’);
+card.setAttribute(‘class’, ‘card’);
+
+var textNode = document.createTextNode(‘this is random text’);
+
+var input = document.createElement(‘input’);
+input.setAttribute(‘type’, ‘text’);
+input.value = “This is awesome”;
+
+card.appendChild(textNode);
+card.appendChild(input);
+swimlane.appendChild(card);
+
+
+<div id=“swimlane-id” name=“swimlane-name” class=“swimlane-class”>
+	<div id=“my-new-card” class=“card”>this is random text</div>
+	<input type=“text” value=“This is awesome” />
+</div>
+
+—————
+
+<div id=“swimlane-id” name=“swimlane-name” class=“swimlane-class”></div>
+
+var element = document.getElementById(‘swimlane-id’);
+
+element.insertAdjacentHTML({where}, ‘<div class=“card”></div>’);
+
+	where:
+		- ‘beforebegin’
+		- ‘afterbegin’
+		- ‘beforend’
+		- ‘afterend’

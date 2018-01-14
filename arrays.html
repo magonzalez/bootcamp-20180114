@@ -1,0 +1,113 @@
+<html>
+    <body>
+        Color: <input id="inputTag" type="text" /> <button id="go">Validate</button>
+        <script>
+            var colors = ['red', 'white', 'blue'];
+
+            // shift()
+
+            var color = colors.shift();
+
+            console.log(color);
+            console.log(colors);
+
+            color = colors.shift();
+
+            console.log(color);
+            console.log(colors);
+
+            // unshift()
+
+            colors = ['red', 'white', 'blue'];
+
+            var count = colors.unshift('yellow');
+
+            console.log(count);
+            console.log(colors);
+
+            // colors.unshift('yellow');
+            // var count = colors.length;
+
+            // colors = ['yellow', 'red', 'white', 'blue']
+            // count = 4
+
+            // splice()
+
+            colors = ['red', 'white', 'blue'];
+
+            var color = colors.splice(0, 1);
+
+            console.log(color);
+            console.log(colors);
+
+            colors = ['red', 'white', 'blue'];
+
+            var removedColors = colors.splice(1, 2);
+
+            console.log(removedColors);
+            console.log(colors);
+
+            colors = ['red', 'white', 'blue'];
+
+            var colorsAdded = colors.splice(2, 0, 'yellow');
+
+            console.log(colorsAdded);
+            console.log(colors);
+
+            colors = ['red', 'white', 'blue'];
+
+            removedColors = colors.splice(1, 2, 5);
+
+            console.log(removedColors);
+            console.log(colors);
+
+            // pop()
+
+            colors = ['red', 'white', 'blue'];
+
+            color = colors.pop();
+
+            console.log(color);
+            console.log(colors);
+
+            // push()
+
+            colors = ['red', 'white', 'blue'];
+
+            count = colors.push('yellow');
+
+            console.log(count);
+            console.log(colors);
+
+            // indexOf()
+
+            colors = ['red', 'white', 'blue'];
+
+            var index = colors.indexOf('white');
+
+            console.log(index);
+            console.log(colors);
+
+            index = colors.indexOf('purple');
+
+            console.log(index);
+            console.log(colors);
+
+            var button = document.getElementById('go');
+
+            button.addEventListener('click', function() {
+                var textBox = document.getElementById('inputTag');
+                var value = textBox.value; // 'red'
+                var comparisonValue = value.toLowerCase();
+                
+                var index = colors.indexOf(comparisonValue); 
+                if(index !== -1) {
+                    alert("Very Nice!");
+                } else {
+                    alert("You so stupid!");
+                }
+            });
+
+        </script>
+    </body>
+</html>

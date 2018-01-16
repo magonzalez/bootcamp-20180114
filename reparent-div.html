@@ -2,7 +2,7 @@
 
 <head>
     <style>
-        #board {
+        .board {
             display: flex;
         }
 
@@ -39,50 +39,117 @@
     </style>
 </head>
 <body>
-    <div id="board">
-        <div id="container" class="swimlane">
+    <div class="board">
+        <div class="swimlane">
             <div class="child-div">
-                <div class="header">Amy's Radiant Div!</div>
-                <div class="buttons">
+                <div class="header">Amy's Radiant Div!</div><div class="buttons">
                     <input class="move-div-left" type="button" value="<" />
                     <input class="move-div-up" type="button" value="^" />
                     <input class="move-div-down" type="button" value="v" />
                     <input class="move-div-right" type="button" value=">" />
+                    <input class="edit-div" type="button" value="EDIT" />
                 </div>
             </div>
             <div class="child-div">
-                <div class="header">Claudia's Pretty-ful Div!</div>
-                <div class="buttons">
+                <div class="header">Claudia's Pretty-ful Div!</div><div class="buttons">
                     <input class="move-div-left" type="button" value="<" />
                     <input class="move-div-up" type="button" value="^" />
                     <input class="move-div-down" type="button" value="v" />
                     <input class="move-div-right" type="button" value=">" />
+                    <input class="edit-div" type="button" value="EDIT" />
                 </div>
             </div>
-        </div>
-        <div class="swimlane"></div>
-        <div class="swimlane"></div>
-        <div class="swimlane"></div>
+        </div><div class="swimlane"></div><div class="swimlane"></div><div class="swimlane"></div>
     </div>
     <script>
-        var upButtons = document.getElementsByClassName('move-div-left');
-        for (var i = 0; i < upButtons.length; i++) {
-            upButtons[i].addEventListener('click', moveDivLeft);
+        var leftButtons = document.getElementsByClassName('move-div-left');
+        for (var i = 0; i < leftButtons.length; i++) {
+            leftButtons[i].addEventListener('click', moveDivLeft);
         }
 
-        var downButtons = document.getElementsByClassName('move-div-right');
-        for (var i = 0; i < downButtons.length; i++) {
-            downButtons[i].addEventListener('click', moveDivRight);
+        var rightButtons = document.getElementsByClassName('move-div-right');
+        for (var i = 0; i < rightButtons.length; i++) {
+            rightButtons[i].addEventListener('click', moveDivRight);
+        }
+
+        var editButtons = document.getElementsByClassName('edit-div');
+        for (var i = 0; i < editButtons.length; i++) {
+            editButtons[i].addEventListener('click', editHeader);
         }
 
         function moveDivRight(event) {
             var button = event.target;
             var childDiv = button.parentNode.parentNode;
+
+            // Navigate to the swimlane - parentNode
+            var swimlane = childDiv.parentNode;
+
+            // Find the next swimlane - nextSibling
+            var nextSwimlane = swimlane.nextSibling;
+
+            // Check that next swimlane in not null - !== null
+            if(nextSwimlane === null) {
+                return;
+            }
+
+            // Append child div to next swimlane's - appendChild
+            swimlane.removeChild(childDiv);
+            nextSwimlane.appendChild(childDiv);
         }
 
         function moveDivLeft(event) {
             var button = event.target;
             var childDiv = button.parentNode.parentNode;
+
+            // Navigate to the swimlane - parentNode
+            var currentSwimlane = childDiv.parentNode;
+
+            // Find the previous swimlane - previousSibling
+            var previousSwimlane = currentSwimlane.previousSibling;
+
+            // Return if previous swimlane is null - === null
+            if(previousSwimlane === null) {
+                return;
+            }
+
+            // Remove child div from current swimlane.
+            currentSwimlane.removeChild(childDiv);
+
+            // Append child div to previous swimlane.
+            previousSwimlane.appendChild(childDiv);
+        }
+
+        function editHeader(event) {
+            var button = event.target;
+
+            // Navigate to the button container - parentNode
+            var buttonContainer = button.parentNode;
+
+            // Navigate to the header container - previousSibling
+            var headerContainer = buttonContainer.previousSibling;
+
+            // Prompt user for new text
+            var newName = prompt("Name", headerContainer.innerText);
+
+            // Make sure text is valid
+            if(newName === null) {
+                return;
+            }
+
+            // TODO: Should also check for empty string and all spaces.
+
+            // Navigate to the header text - children[0]
+            var existingHeaderText = headerContainer.children[0];
+
+            // Remove the current text node
+            //headerContainer.removeChild(existingHeaderText);
+
+            // Add new text node with our new header text
+            //var newHeaderText = document.createTextNode(newName);
+            //headerContainer.appendChild(newHeaderText);
+
+            // This is a hack to get around the fact that we started with hard-coded HTML
+            headerContainer.innerText = newName;
         }
     </script>
 </body>

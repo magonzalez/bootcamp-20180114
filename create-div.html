@@ -1,0 +1,77 @@
+<html>
+    <style>
+        #container {
+            border: 1px solid red;
+            width: 300px;
+            min-height: 450px;
+            margin-top:10px;
+            border-radius: 5px;
+        }
+        .child-div {
+            border: 1px solid black;
+            background-color: lightgrey;
+            min-height: 150px;
+            margin: 10px;
+        }
+        .header {
+            font-weight: bold;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 18pt;
+        }
+    </style>
+    <body>
+        <input id="create-div" value="Create New Div" type="button" />
+        <div id="container">
+
+        </div>
+        <script>
+            var button = document.getElementById('create-div');
+            var container = document.getElementById('container');
+
+            button.addEventListener('click', function() {
+                var name = prompt("Name");
+                if(name === null) {  // should also validate that name is not empty string ('') or all spaces (' ')
+                    return;
+                }
+
+                /*
+
+                    In general when creating elements dynamically, you
+                    will have to do the following.
+
+                    1. Create the new element - div, input, span, etc.
+                    2. Set attributes on the element - id, class, name, etc.
+                    3. Append new element to parent element (container).
+
+                    NOTE: If you're building a nested hierarchy of elements,
+                    you will do this for each element adding it to its
+                    respective parent node in the process.
+
+                */
+
+
+                // 1. Create a child-div
+                var childDiv = document.createElement('div');
+
+                // 2. Set a class on the div
+                childDiv.setAttribute('class', 'child-div');    
+
+                // 3. Create a header div
+                var header = document.createElement('div');
+                header.setAttribute('class', 'header');
+
+                // 4. Create a textnode to hold name in the header div.
+                var headerText = document.createTextNode(name);
+
+                // 5. Append header text to header
+                header.appendChild(headerText);
+
+                // 6. Append header to child div
+                childDiv.appendChild(header);
+
+                // 7. Append child div to container
+                container.appendChild(childDiv);
+            });
+        </script>
+    </body>
+</html>

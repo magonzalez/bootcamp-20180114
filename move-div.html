@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <style>
+            #container {
+                border: 1px solid red;
+                width: 300px;
+                min-height: 450px;
+                margin-top:10px;
+                border-radius: 5px;
+            }
+            .child-div {
+                border: 1px solid black;
+                background-color: lightgrey;
+                min-height: 150px;
+                margin: 10px;
+            }
+            .header {
+                background-color:beige;
+                font-weight: bold;
+                font-family: "Courier New", Courier, monospace;
+                font-size: 12pt;
+                padding: 3px;
+            }
+            .buttons {
+                display: flex;
+                justify-content: space-around;
+                background-color: white;
+                padding: 3px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div class="child-div">
+                <div class="header">Amy's Radiant Div!</div>
+                <div class="buttons">
+                    <input class="move-div-up" type="button" value="^" />
+                    <input class="move-div-down" type="button" value="v" />
+                </div>
+            </div>
+            <div class="child-div">
+                <div class="header">Claudia's Pretty-ful Div!</div>
+                <div class="buttons">
+                    <input class="move-div-up" type="button" value="^" />
+                    <input class="move-div-down" type="button" value="v" />
+                </div>
+            </div>
+            <div class="child-div">
+                <div class="header">Gary's Sexy Div!</div>
+                <div class="buttons">
+                    <input class="move-div-up" type="button" value="^" />
+                    <input class="move-div-down" type="button" value="v" />
+                </div>
+            </div>
+            <div class="child-div">
+                <div class="header">Miguel's Div!</div>
+                <div class="buttons">
+                    <input class="move-div-up" type="button" value="^" />
+                    <input class="move-div-down" type="button" value="v" />
+                </div>
+            </div>
+        </div>
+        <script>
+            var upButtons = document.getElementsByClassName('move-div-up');
+            for(var i=0; i < upButtons.length;i++) {
+                upButtons[i].addEventListener('click', moveDivUp);
+            }
+
+            var downButtons = document.getElementsByClassName('move-div-down');
+            for(var i=0; i < downButtons.length;i++) {
+                downButtons[i].addEventListener('click', moveDivDown);
+            }
+
+            function moveDivUp(event) {
+                var button = event.target;
+                var childDiv = button.parentNode.parentNode;
+
+                // find previous sibling - previousSibling
+                var previousDiv = childDiv.previousSibling;
+                // check that it is not null - !== null
+                if(previousDiv === null){
+                    return;
+                }
+                
+                // remove ourselves from container - removeChild()
+                var container = childDiv.parentNode;
+                container.removeChild(childDiv);
+
+                // insert ourselves before our previous sibling - insertBefore
+                container.insertBefore(childDiv, previousDiv);
+            }
+
+            function moveDivDown(event) {
+                var button = event.target;
+                var childDiv = button.parentNode.parentNode;
+
+                // find the next sibling - nextSibling
+                var nextDiv = childDiv.nextSibling;
+
+                // check that it is not null - !== null
+                if(nextDiv === null){
+                    return;
+                }
+
+                // Remove the next sibling from the container - removeChild()
+                var container = childDiv.parentNode;
+                container.removeChild(nextDiv);
+
+                // Insert the next sibling before child div - insertBefore()
+                container.insertBefore(nextDiv, childDiv);
+            }
+        </script>
+    </body>
+</html>

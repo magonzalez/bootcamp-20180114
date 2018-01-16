@@ -1,0 +1,90 @@
+<html>
+
+<head>
+    <style>
+        #board {
+            display: flex;
+        }
+
+        .swimlane {
+            border: 1px solid red;
+            width: 300px;
+            min-height: 450px;
+            margin-top: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        .child-div {
+            border: 1px solid black;
+            background-color: lightgrey;
+            min-height: 150px;
+            margin: 10px;
+        }
+
+        .header {
+            background-color: beige;
+            font-weight: bold;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 12pt;
+            padding: 3px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            padding: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="board">
+        <div id="container" class="swimlane">
+            <div class="child-div">
+                <div class="header">Amy's Radiant Div!</div>
+                <div class="buttons">
+                    <input class="move-div-left" type="button" value="<" />
+                    <input class="move-div-up" type="button" value="^" />
+                    <input class="move-div-down" type="button" value="v" />
+                    <input class="move-div-right" type="button" value=">" />
+                </div>
+            </div>
+            <div class="child-div">
+                <div class="header">Claudia's Pretty-ful Div!</div>
+                <div class="buttons">
+                    <input class="move-div-left" type="button" value="<" />
+                    <input class="move-div-up" type="button" value="^" />
+                    <input class="move-div-down" type="button" value="v" />
+                    <input class="move-div-right" type="button" value=">" />
+                </div>
+            </div>
+        </div>
+        <div class="swimlane"></div>
+        <div class="swimlane"></div>
+        <div class="swimlane"></div>
+    </div>
+    <script>
+        var upButtons = document.getElementsByClassName('move-div-left');
+        for (var i = 0; i < upButtons.length; i++) {
+            upButtons[i].addEventListener('click', moveDivLeft);
+        }
+
+        var downButtons = document.getElementsByClassName('move-div-right');
+        for (var i = 0; i < downButtons.length; i++) {
+            downButtons[i].addEventListener('click', moveDivRight);
+        }
+
+        function moveDivRight(event) {
+            var button = event.target;
+            var childDiv = button.parentNode.parentNode;
+        }
+
+        function moveDivLeft(event) {
+            var button = event.target;
+            var childDiv = button.parentNode.parentNode;
+        }
+    </script>
+</body>
+
+</html>
